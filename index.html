@@ -1,0 +1,2280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Herederos | Barbería & Belleza en Catarroja</title>
+  <meta name="description" content="Herederos Barbería & Belleza. Barbería, peluquería, colorimetría y estética en Catarroja, Valencia. Reserva tu cita online.">
+  <meta name="theme-color" content="#080808">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #080808;
+      --black-soft: #101010;
+      --card: #141414;
+      --card-hover: #1b1b1b;
+      --white: #f5f3ef;
+      --muted: #99958d;
+      --gold: #d4af37;
+      --gold-light: #e5d09a;
+      --line: rgba(255,255,255,.08);
+      --title: 'Playfair Display', serif;
+      --body: 'Jost', sans-serif;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    body.menu-open {
+      overflow: hidden;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    img {
+      display: block;
+      width: 100%;
+    }
+    em {
+      font-family: var(--title);
+      color: var(--gold-light);
+      font-style: italic;
+    }
+    /* =========================
+       DIVIDERS DEGRADADOS
+    ========================= */
+    .gold-divider {
+      height: 1px;
+      width: 100%;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,.35), transparent);
+      margin: 10px 0;
+    }
+    /* =========================
+       HEADER
+    ========================= */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(8,8,8,.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .nav {
+      max-width: 1250px;
+      margin: auto;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: var(--title);
+      font-size: 1.35rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .logo span {
+      display: block;
+      margin-top: 7px;
+      font-family: var(--body);
+      font-size: .58rem;
+      letter-spacing: 4px;
+      color: var(--gold-light);
+      font-weight: 400;
+    }
+
+    .logo-image {
+      display: inline-flex;
+      align-items: center;
+      width: 185px;
+      max-width: 42vw;
+    }
+
+    .logo-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .nav-right {
+      display: flex;
+      align-items: right;
+      gap: 25px;
+    }
+    .nav-booksy {
+      padding: 11px 20px;
+      border: 1px solid rgba(212,175,55,.7);
+      font-size: .72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .nav-booksy:hover {
+      background: var(--gold);
+      color: #080808;
+      box-shadow: 0 0 15px rgba(212,175,55,0.4);
+    }
+    .menu-button {
+      position: relative;
+      z-index: 5001;
+      width: 42px;
+      height: 42px;
+      background: none;
+      border: 1px solid rgba(255,255,255,.14);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: .3s;
+    }
+    .menu-button:hover {
+      border-color: var(--gold-light);
+    }
+    .menu-button span {
+      width: 20px;
+      height: 1px;
+      background: white;
+      transition: .3s;
+    }
+    /* =========================
+       MENU OVERLAY
+    ========================= */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(212,175,55,.1), transparent 35%),
+        #080808;
+      padding: 35px 7vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: .45s ease;
+    }
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    .menu-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      font-weight: 200;
+      cursor: pointer;
+      transition: .3s;
+    }
+    .close:hover {
+      color: var(--gold-light);
+      transform: rotate(90deg);
+    }
+    .menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .menu-links a {
+      font-family: var(--title);
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      line-height: 1.05;
+      color: #eee;
+      transition: .3s;
+    }
+    .menu-links a:hover {
+      color: var(--gold-light);
+      transform: translateX(12px);
+    }
+    .menu-bottom {
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+    .menu-address {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .gold-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gold-light);
+      color: #080808;
+      padding: 14px 25px;
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      overflow: hidden;
+      transition: .3s;
+    }
+    .gold-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: .5s;
+    }
+    .gold-button:hover::before {
+      left: 100%;
+    }
+    .gold-button:hover {
+      background: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(212,175,55,0.3);
+    }
+    /* =========================
+       HERO
+    ========================= */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+      padding: 140px 25px 90px;
+      background:
+        linear-gradient(
+          rgba(5,5,5,.6),
+          rgba(5,5,5,.9)
+        ),
+        url("https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=85&w=1800&auto=format&fit=crop")
+        center/cover no-repeat;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at center, rgba(212,175,55,.05), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content {
+      max-width: 900px;
+      position: relative;
+      z-index: 2;
+    }
+    .eyebrow {
+      color: var(--gold-light);
+      font-size: .72rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+    .hero h1 {
+      font-family: var(--title);
+      font-weight: 400;
+      font-size: clamp(3.1rem, 7vw, 6.3rem);
+      line-height: 1.04;
+      margin-bottom: 25px;
+    }
+    .hero-description {
+      max-width: 650px;
+      margin: auto;
+      color: #b5b1aa;
+      font-size: 1.05rem;
+    }
+    .hero-actions {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .outline-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 27px;
+      border: 1px solid rgba(255,255,255,.25);
+      font-size: .72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: .3s;
+    }
+    .outline-button:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+      background: rgba(212,175,55,0.05);
+    }
+    /* =========================
+       GLOBAL SECTIONS
+    ========================= */
+    section {
+      max-width: 1250px;
+      margin: auto;
+      padding: 110px 28px;
+    }
+    .section-label {
+      color: var(--gold-light);
+      font-size: .7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 13px;
+    }
+    .section-title {
+      font-family: var(--title);
+      font-weight: 400;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.15;
+      margin-bottom: 25px;
+    }
+    .section-text {
+      color: var(--muted);
+      max-width: 570px;
+    }
+    /* =========================
+       EXPERIENCE
+    ========================= */
+    .experience {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .experience-image {
+      position: relative;
+    }
+    .experience-image::before {
+      content: "";
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 70%;
+      height: 70%;
+      border-top: 1px solid rgba(212,175,55,.4);
+      border-right: 1px solid rgba(212,175,55,.4);
+      pointer-events: none;
+    }
+    .experience-image img {
+      height: 570px;
+      object-fit: cover;
+      filter: saturate(.75);
+      transition: .5s ease;
+    }
+    .experience-image:hover img {
+      filter: saturate(1);
+    }
+    /* =========================
+       SERVICES
+    ========================= */
+    .services-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 70px;
+    }
+    .service-category {
+      margin-bottom: 65px;
+    }
+    .category-title {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 25px;
+    }
+    .category-title h3 {
+      font-family: var(--title);
+      font-size: 2rem;
+      font-weight: 400;
+    }
+    .category-line {
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(90deg, rgba(212,175,55,.3), transparent);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .service {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.05);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      transition: .3s ease;
+    }
+    .service:hover {
+      background: var(--card-hover);
+      border-color: rgba(212,175,55,.35);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    }
+    .service-name {
+      font-size: .98rem;
+      transition: .3s;
+    }
+    .service:hover .service-name {
+      color: var(--gold-light);
+      transform: translateX(4px);
+    }
+    .dots {
+      flex: 1;
+      border-bottom: 1px dashed rgba(255,255,255,.12);
+      margin: 0 15px;
+    }
+    .price {
+      color: var(--gold-light);
+      font-family: var(--title);
+      font-size: 1.2rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    /* =========================
+       TEAM
+    ========================= */
+    .team-grid {
+      margin-top: 45px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    .team-card {
+      background: linear-gradient(145deg, #161616, #0e0e0e);
+      border: 1px solid rgba(212,175,55,.18);
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: .3s;
+    }
+    .team-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    }
+    .team-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      background: radial-gradient(circle, #222 0%, #111 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-family: var(--title);
+      font-size: 1.8rem;
+      color: var(--gold-light);
+      letter-spacing: 1px;
+      box-shadow: 0 0 15px rgba(212,175,55,0.15);
+    }
+    .team-card h3 {
+      font-family: var(--title);
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin-bottom: 6px;
+    }
+    .team-role {
+      color: var(--gold-light);
+      font-size: .78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+    .team-bio {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.6;
+    }
+    /* =========================
+       GALLERY
+    ========================= */
+    .gallery-preview {
+       display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 1100px;
+      margin: 35px auto 0;
+      align-items: stretch;
+    }
+    .gallery-box {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      aspect-ratio: 4 / 5;
+      background: #171717;
+    }
+    .gallery-box img {
+       display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.4s ease;
+    }
+    .gallery-box::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(8,8,8,0.7));
+      opacity: 0;
+      transition: .4s;
+    }
+    .gallery-box:hover img {
+      transform: scale(1.04);
+      
+    }
+    .gallery-box:hover::after {
+      opacity: 1;
+    }
+    /* =========================
+       CONTACT
+    ========================= */
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .contact-details {
+      margin: 35px 0;
+    }
+    .detail {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .detail span:first-child {
+      color: var(--muted);
+    }
+    .detail span:last-child {
+      text-align: right;
+    }
+    .contact-image img {
+      height: 480px;
+      object-fit: cover;
+      filter: saturate(.75);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    /* =========================
+       FOOTER
+    ========================= */
+    footer {
+      background: #050505;
+      border-top: 1px solid var(--line);
+      padding: 65px 28px 25px;
+    }
+    .footer-inner {
+      max-width: 1250px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      align-items: flex-end;
+    }
+    .footer-description {
+      color: var(--muted);
+      max-width: 400px;
+      margin-top: 18px;
+      font-size: .88rem;
+    }
+    .footer-contact {
+      text-align: right;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+    .footer-bottom {
+      max-width: 1250px;
+      margin: 45px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: #686868;
+      font-size: .72rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    /* =========================
+       MOBILE
+    ========================= */
+    @media(max-width: 850px) {
+      .nav-booksy {
+        display: none;
+      }
+      section {
+        padding: 80px 20px;
+      }
+      .experience,
+      .contact {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+      .experience-image img {
+        height: 430px;
+      }
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-preview {
+        grid-template-columns: 1fr 1fr;
+      }
+      .gallery-box:first-child {
+        grid-column: span 2;
+      }
+      .menu-overlay {
+        padding: 28px 25px;
+      }
+      .menu-bottom {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .footer-contact {
+        text-align: left;
+      }
+      .footer-bottom {
+        flex-direction: column;
+      }
+    }
+    @media(max-width: 500px) {
+      .nav {
+        padding: 15px 18px;
+      }
+      .hero {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+      .hero-description {
+        font-size: .95rem;
+      }
+      .gallery-preview {
+        display: block;
+      }
+      .gallery-box {
+        height: 280px;
+        margin-bottom: 10px;
+      }
+      .detail {
+        flex-direction: column;
+        gap: 3px;
+      }
+      .detail span:last-child {
+        text-align: left;
+      }
+      .menu-links a {
+        font-size: 2.8rem;
+      }
+    }
+  
+    /* =========================
+       MEJORAS MÓVILES
+    ========================= */
+    .mobile-sticky {
+      display: none;
+    }
+
+    button,
+    .gold-button,
+    .outline-button,
+    .nav-booksy {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    @media(max-width: 850px) {
+      body {
+        padding-bottom: 82px;
+      }
+
+      header {
+        z-index: 3000;
+      }
+
+      .menu-button {
+        min-width: 46px;
+        min-height: 46px;
+      }
+
+      .menu-overlay {
+        min-height: 100dvh;
+        height: 100dvh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        z-index: 4000;
+      }
+
+      .close {
+        width: 48px;
+        height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .menu-links a {
+        padding: 4px 0;
+      }
+
+      .hero {
+        min-height: 100svh;
+        padding-top: 125px;
+        padding-bottom: 95px;
+        background-position: 58% center;
+      }
+
+      .hero-actions a {
+        min-height: 50px;
+      }
+
+      .mobile-sticky {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: max(12px, env(safe-area-inset-bottom));
+        min-height: 54px;
+        padding: 14px 18px;
+        z-index: 2500;
+        background: var(--gold-light);
+        color: #080808;
+        font-size: .72rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        box-shadow: 0 12px 30px rgba(0,0,0,.55);
+      }
+
+      .service,
+      .detail {
+        min-height: 58px;
+      }
+
+      .team-card {
+        padding: 32px 22px;
+      }
+
+      .contact-image img,
+      .experience-image img {
+        height: auto;
+        aspect-ratio: 4 / 5;
+      }
+    }
+
+    @media(max-width: 500px) {
+      .hero h1 {
+        font-size: clamp(2.9rem, 14vw, 4.2rem);
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions .gold-button,
+      .hero-actions .outline-button {
+        width: 100%;
+      }
+
+      .section-title {
+        font-size: clamp(2.15rem, 11vw, 3.2rem);
+      }
+
+      .category-title h3 {
+        font-size: 1.65rem;
+      }
+
+      .service {
+        padding: 18px 16px;
+      }
+
+      .menu-links {
+        margin: 30px 0;
+      }
+
+      .menu-links a {
+        font-size: clamp(2.15rem, 12vw, 3rem);
+      }
+    }
+
+    @supports (padding: max(0px)) {
+      .mobile-sticky {
+        padding-bottom: max(14px, env(safe-area-inset-bottom));
+      }
+    }
+
+  
+    .team-card-photo {
+      padding-top: 24px;
+    }
+
+    .team-photo-wrap {
+      width: 190px;
+      height: 190px;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid rgba(212,175,55,.65);
+      box-shadow: 0 0 0 8px rgba(212,175,55,.04), 0 14px 35px rgba(0,0,0,.45);
+    }
+
+    .team-photo-real {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+    }
+
+    .team-kicker {
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 2.2px;
+      font-size: .66rem;
+      margin-bottom: 8px;
+    }
+
+    .team-booking {
+      margin-top: 22px;
+    }
+
+    @media(max-width:500px) {
+      .team-photo-wrap {
+        width: 160px;
+        height: 160px;
+      }
+    }
+
+  
+    .brand-values {
+      padding: 34px 28px 8px;
+    }
+
+    .brand-values-grid {
+      max-width: 1050px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 14px;
+    }
+
+    .brand-values-grid div {
+      padding: 14px 12px;
+      border-top: 1px solid rgba(212,175,55,.35);
+      text-align: center;
+    }
+
+    .brand-values-grid strong {
+      display: block;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-size: .76rem;
+      margin-bottom: 4px;
+    }
+
+    .brand-values-grid span {
+      color: var(--muted);
+      font-size: .76rem;
+    }
+
+    @media(max-width:700px) {
+      .brand-values-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+    }
+
+  
+    .team-grid {
+      align-items: stretch;
+    }
+
+    .team-card-photo {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .team-photo-wrap {
+      width: 190px;
+      height: 190px;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid rgba(212,175,55,.65);
+      box-shadow: 0 0 0 8px rgba(212,175,55,.04), 0 14px 35px rgba(0,0,0,.45);
+      background: #111;
+      flex: 0 0 auto;
+    }
+
+    .team-photo-real {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+    }
+
+    .abraham-photo {
+      object-position: 35% 22%;
+      transform: scale(1.04);
+    }
+
+    .team-kicker {
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 2.2px;
+      font-size: .66rem;
+      margin-bottom: 8px;
+    }
+
+    .collaborator-card {
+      border-color: rgba(212,175,55,.35);
+      background:
+        linear-gradient(145deg, rgba(212,175,55,.035), transparent 40%),
+        linear-gradient(145deg, #161616, #0e0e0e);
+    }
+
+    .collaborator-extra {
+      margin-top: 14px;
+    }
+
+    .team-booking {
+      margin-top: 22px;
+      align-self: center;
+    }
+
+    @media(max-width:500px) {
+      .team-photo-wrap {
+        width: 160px;
+        height: 160px;
+      }
+    }
+
+  
+    .collaborator-card {
+      cursor: pointer;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+
+    .collaborator-card:hover,
+    .collaborator-card:focus-visible {
+      transform: translateY(-4px);
+      border-color: rgba(212,175,55,.72);
+      box-shadow: 0 18px 45px rgba(0,0,0,.35);
+      outline: none;
+    }
+
+    .price-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+    }
+
+    .price-modal.active {
+      display: flex;
+    }
+
+    .price-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.78);
+      backdrop-filter: blur(9px);
+      -webkit-backdrop-filter: blur(9px);
+    }
+
+    .price-modal-panel {
+      position: relative;
+      width: min(680px, 100%);
+      max-height: min(82vh, 760px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      background: linear-gradient(150deg, #171717, #0b0b0b);
+      border: 1px solid rgba(212,175,55,.42);
+      border-radius: 22px;
+      padding: 34px;
+      box-shadow: 0 28px 80px rgba(0,0,0,.55);
+    }
+
+    .price-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.04);
+      color: #fff;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .price-modal-kicker {
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: .68rem;
+      margin-bottom: 8px;
+    }
+
+    .price-modal-panel h2 {
+      margin: 0;
+      font-family: var(--display);
+      font-size: clamp(2rem, 5vw, 3.3rem);
+      font-weight: 500;
+    }
+
+    .price-modal-subtitle {
+      margin: 4px 0 26px;
+      color: var(--muted);
+    }
+
+    .abraham-price-list {
+      display: grid;
+      gap: 2px;
+    }
+
+    .abraham-price-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding: 17px 0;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+    }
+
+    .abraham-price-row strong {
+      display: block;
+      font-size: .98rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .abraham-price-row span {
+      display: block;
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.45;
+    }
+
+    .abraham-price-row b {
+      color: var(--gold-light);
+      font-size: 1rem;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .featured-price {
+      margin-top: 8px;
+      padding: 17px 15px;
+      border: 1px solid rgba(212,175,55,.3);
+      border-radius: 12px;
+      background: rgba(212,175,55,.045);
+    }
+
+    .price-modal-note {
+      margin: 22px 0;
+      color: var(--muted);
+      font-size: .76rem;
+      line-height: 1.6;
+    }
+
+    .price-modal-book {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+    }
+
+    body.price-modal-open {
+      overflow: hidden;
+    }
+
+    @media(max-width:600px) {
+      .price-modal {
+        padding: 10px;
+        align-items: flex-end;
+      }
+
+      .price-modal-panel {
+        width: 100%;
+        max-height: 88dvh;
+        border-radius: 22px 22px 8px 8px;
+        padding: 28px 20px calc(24px + env(safe-area-inset-bottom));
+      }
+
+      .abraham-price-row {
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+      }
+
+      .abraham-price-row span {
+        max-width: 240px;
+      }
+    }
+
+
+/* =========================================================
+   HEREDEROS — REDISEÑO MODERNO
+   Mantiene los mismos apartados y contenido.
+========================================================= */
+:root{
+  --gold:#d6b15b;
+  --gold-2:#f0d58d;
+  --bg:#070707;
+  --surface:#101010;
+  --surface-2:#151515;
+  --text:#f6f2ea;
+  --muted:#a6a29b;
+  --line:rgba(255,255,255,.09);
+  --shadow:0 24px 80px rgba(0,0,0,.42);
+}
+body{
+  background:
+    radial-gradient(circle at 15% 10%,rgba(214,177,91,.06),transparent 28%),
+    radial-gradient(circle at 90% 45%,rgba(214,177,91,.035),transparent 30%),
+    var(--bg);
+}
+header{
+  background:rgba(7,7,7,.72);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.nav{padding:15px 28px}
+.logo-image{filter:drop-shadow(0 8px 20px rgba(0,0,0,.35))}
+.nav-booksy,.gold-button{
+  border-radius:999px;
+}
+.nav-booksy{
+  padding:10px 18px;
+  background:rgba(214,177,91,.08);
+  border-color:rgba(214,177,91,.5);
+}
+.booksy-direct{
+  background:transparent;
+  color:var(--gold-light);
+}
+.menu-button{border-radius:50%;background:rgba(255,255,255,.025)}
+.hero{
+  min-height:92vh;
+  background:
+    linear-gradient(180deg,rgba(4,4,4,.42),rgba(4,4,4,.86)),
+    radial-gradient(circle at 50% 45%,rgba(214,177,91,.10),transparent 45%),
+    url("https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=90&w=2000&auto=format&fit=crop") center/cover no-repeat;
+}
+.hero-content{max-width:980px}
+.hero h1{letter-spacing:-1.5px;text-shadow:0 12px 45px rgba(0,0,0,.55)}
+.hero-description{font-size:1.08rem}
+.gold-button{
+  background:linear-gradient(135deg,#f0d58d,#c9a84d);
+  box-shadow:0 10px 30px rgba(214,177,91,.16);
+}
+.gold-button:hover{box-shadow:0 15px 38px rgba(214,177,91,.25)}
+.outline-button{border-radius:999px;background:rgba(255,255,255,.025);backdrop-filter:blur(8px)}
+section{padding-top:70px;padding-bottom:70px}
+.brand-values{
+  max-width:1100px;
+  padding-top:42px;
+  padding-bottom:25px;
+}
+.brand-values-grid div{
+  border:1px solid var(--line);
+  border-top:1px solid rgba(214,177,91,.42);
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
+  padding:14px 12px;
+  transition:.3s ease;
+}
+.brand-values-grid div:hover{transform:translateY(-4px);border-color:rgba(214,177,91,.42)}
+.experience-image img,.contact-image img{
+  border-radius:24px;
+  box-shadow:var(--shadow);
+}
+.experience-image::before{
+  border-radius:0 22px 0 0;
+}
+.service{
+  border-radius:16px;
+  background:linear-gradient(145deg,#151515,#0d0d0d);
+  padding:21px 24px;
+}
+.service:hover{transform:translateY(-4px);box-shadow:0 15px 35px rgba(0,0,0,.28)}
+.team-card{
+  border-radius:24px;
+  box-shadow:0 18px 50px rgba(0,0,0,.18);
+}
+.team-card:hover{transform:translateY(-7px)}
+.team-photo-wrap{box-shadow:0 0 0 8px rgba(214,177,91,.035),0 18px 45px rgba(0,0,0,.5)}
+.gallery-box{border-radius:22px;box-shadow:0 18px 45px rgba(0,0,0,.28)}
+.gallery-box img{transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s}
+.detail{padding:21px 0}
+footer{background:linear-gradient(180deg,#080808,#040404)}
+.mobile-sticky{
+  border-radius:999px;
+  left:16px;right:16px;
+  background:linear-gradient(135deg,#f0d58d,#c9a84d);
+}
+
+
+.reveal-ready .experience>div,.reveal-ready .service,.reveal-ready .team-card,.reveal-ready .gallery-box,.reveal-ready .contact>div{
+  opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease;
+}
+.reveal-ready .is-visible{opacity:1;transform:none}
+
+
+
+/* =========================
+   GALERÍA — CUADRÍCULA LIMPIA Y RESPONSIVE
+   Estas reglas finales sustituyen los ajustes anteriores de la galería.
+========================= */
+.gallery-preview {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 1100px;
+  margin: 35px auto 0;
+  align-items: stretch;
+}
+
+.gallery-box {
+  position: relative;
+  min-width: 0;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #171717;
+}
+
+.gallery-box:first-child {
+  grid-column: auto;
+}
+
+.gallery-box img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .5s;
+}
+
+.gallery-box:hover img {
+  transform: scale(1.04);
+  filter: brightness(1.05);
+}
+
+@media (max-width: 850px) {
+  .gallery-preview {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .gallery-box:first-child {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .gallery-preview {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 25px;
+  }
+
+  .gallery-box {
+    height: auto;
+    aspect-ratio: 3 / 4;
+    margin: 0;
+    border-radius: 10px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <!-- =========================
+       HEADER
+  ========================== -->
+  <header>
+    <div class="nav">
+      <a href="#inicio" class="logo logo-image" aria-label="Herederos Barbería & Belleza">
+        <img src=Logo.jpeg alt="Herederos Barbería & Belleza">
+      </a>
+      <div class="nav-right">
+       
+        <a
+          href="https://booksy.com/es-es/193384_herederos-peluqueria-y-barberia_peluqueria_57512_catarroja?do=invite&_branch_match_id=1627354520407952850&utm_medium=merchant_customer_invite&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT07J0UvKz88urtRLzs/VD0oNDnHxLfMOM0uyrytKTUstKsrMS49PKsovL04tsnXOKMrPTQUAeCYoqjwAAAA="
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nav-booksy booksy-direct">
+          Booksy
+        </a>
+        <button
+          class="menu-button"
+          id="openMenu"
+          aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- =========================
+       MENU
+  ========================== -->
+  <div class="menu-overlay" id="menu">
+    <div class="menu-top">
+      <a href="#inicio" class="logo logo-image" aria-label="Herederos Barbería & Belleza">
+        <img src=Logo.jpeg alt="Herederos Barbería & Belleza">
+      </a>
+      <button
+        class="close"
+        id="closeMenu"
+        aria-label="Cerrar menú">
+        ×
+      </button>
+    </div>
+    <nav class="menu-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#barberia">Barberia</a>
+      <a href="#corteypeinado">Corte y peinado</a>
+      <a href="#color">Color</a>
+      <a href="#mechasyrubios">Mechas y rubios</a>
+      <a href="#tratamientos">Tratamientos</a>
+      <a href="#keratina">Keratina</a>
+      <a href="#cejasydepilacion">Cejas y depilacion</a>
+      <a href="#especiales">Trabajos Especiales</a>
+      <a href="#equipo">Equipo</a>
+      <a href="#galeria">Galería</a>
+      <a href="#experiencia">Herederos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="menu-bottom">
+      <div class="menu-address">
+        Av. la Rambleta, 29 · 46470 Catarroja, Valencia
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        
+        <a href="https://booksy.com/es-es/193384_herederos-peluqueria-y-barberia_peluqueria_57512_catarroja?do=invite&_branch_match_id=1627354520407952850&utm_medium=merchant_customer_invite&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT07J0UvKz88urtRLzs/VD0oNDnHxLfMOM0uyrytKTUstKsrMS49PKsovL04tsnXOKMrPTQUAeCYoqjwAAAA=" target="_blank" rel="noopener noreferrer" class="outline-button">Reservar en Booksy</a>
+      </div>
+    </div>
+  </div>
+  <!-- =========================
+       HERO
+  ========================== -->
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-content">
+        <div class="eyebrow">
+          Barbería · Estética · Colorimetría
+        </div>
+        <h1>
+          La herencia del
+          <em>buen estilo.</em>
+        </h1>
+        <p class="hero-description">
+          Un espacio donde la barbería, la belleza y el cuidado personal
+          se encuentran en un mismo lugar.
+        </p>
+        <div class="hero-actions">
+          <a href="https://booksy.com/es-es/193384_herederos-peluqueria-y-barberia_peluqueria_57512_catarroja?do=invite&_branch_match_id=1627354520407952850&utm_medium=merchant_customer_invite&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT07J0UvKz88urtRLzs/VD0oNDnHxLfMOM0uyrytKTUstKsrMS49PKsovL04tsnXOKMrPTQUAeCYoqjwAAAA=" target="_blank" rel="noopener noreferrer" class="outline-button">Booksy</a>
+          <a
+            href="https://wa.me/34624368625"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="outline-button">
+            WhatsApp
+          </a>
+          <a
+            href="#servicios"
+            class="outline-button">
+            Ver servicios
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="brand-values" aria-label="Valores Herederos">
+      <div class="brand-values-grid">
+        <div><strong>Estilo</strong><span>Que se hereda</span></div>
+        <div><strong>Confianza</strong><span>Que se nota</span></div>
+        <div><strong>Calidad</strong><span>En cada detalle</span></div>
+        <div><strong>Experiencia</strong><span>A tu medida</span></div>
+      </div>
+    </section>
+
+    <!-- =========================
+         EXPERIENCIA
+    ========================== -->
+    
+
+    <div class="gold-divider"></div>
+
+    <!-- =========================
+         SERVICIOS
+    ========================== -->
+    <section id="servicios">
+      <div class="services-header">
+        <span class="section-label">
+          Menú completo
+        </span>
+        <h2 class="section-title">
+          Servicios &
+          <em>tarifas.</em>
+        </h2>
+        <p class="section-text" style="margin:auto;">
+          Descubre nuestra carta de servicios. Iremos ampliándola
+          a medida que incorporemos todos los servicios de Herederos.
+        </p>
+      </div>
+      <!-- BARBERÍA -->
+      <div class="service-category" id="barberia">
+        <div class="category-title">
+          <h3>Barbería</h3>
+          <div class="category-line"></div>
+        </div>
+        <div class="services-grid">
+          <div class="service">
+            <span class="service-name">Corte</span>
+            <span class="dots"></span>
+            <span class="price">14 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Corte + barba</span>
+            <span class="dots"></span>
+            <span class="price">20 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Corte + cejas</span>
+            <span class="dots"></span>
+            <span class="price">17 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Barba</span>
+            <span class="dots"></span>
+            <span class="price">10 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Cejas</span>
+            <span class="dots"></span>
+            <span class="price">3 €</span>
+          </div>
+        </div>
+      </div>
+      <!-- COLOR -->
+      <div class="service-category" id="corteypeinado">
+        <div class="category-title">
+          <h3>Corte y peinado</h3>
+          <div class="category-line"></div>
+        </div>
+        <div class="services-grid">
+          <div class="service">
+            <span class="service-name">Corte mujer</span>
+            <span class="dots"></span>
+            <span class="price">15 €</span>
+          </div>
+
+          <div class="service">
+            <span class="service-name">Corte + secado corto</span>
+            <span class="dots"></span>
+            <span class="price">22 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Corte + secado medio</span>
+            <span class="dots"></span>
+            <span class="price">25 €</span>
+          </div>
+
+          <div class="service">
+            <span class="service-name">Corte + secado largo</span>
+            <span class="dots"></span>
+            <span class="price">28 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Secado corto</span>
+            <span class="dots"></span>
+            <span class="price">12 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Secado medio</span>
+            <span class="dots"></span>
+            <span class="price">15 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Secado largo</span>
+            <span class="dots"></span>
+            <span class="price">18 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Ondas/peinado especial</span>
+            <span class="dots"></span>
+            <span class="price">20 €</span>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <div class="service-category" id="color">
+        <div class="category-title">
+          <h3>Color</h3>
+          <div class="category-line"></div>
+        </div>
+        <div class="services-grid">
+          <div class="service">
+            <span class="service-name">Tinte raíz</span>
+            <span class="dots"></span>
+            <span class="price">desde 25 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Tinte completo</span>
+            <span class="dots"></span>
+            <span class="price">desde 35 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Baño de color / matiz</span>
+            <span class="dots"></span>
+            <span class="price">20 €</span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="service-category" id= "mechasyrubios">
+        <div class="category-title">
+          <h3>Mechas y rubios</h3>
+          <div class="category-line"></div>
+        </div>
+        <div class="services-grid">
+          <div class="service">
+            <span class="service-name">Mechas parciales</span>
+            <span class="dots"></span>
+            <span class="price">desde 50 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Mechas completas</span>
+            <span class="dots"></span>
+            <span class="price">desde 70 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Ballage</span>
+            <span class="dots"></span>
+            <span class="price">desde 70 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Matizacion de rubios</span>
+            <span class="dots"></span>
+            <span class="price">25 €</span>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="service-category" id="tratamientos">
+        <div class="category-title">
+          <h3>Tratamientos</h3>
+          <div class="category-line"></div>
+        </div>
+        <div class="services-grid">
+          <div class="service">
+            <span class="service-name">Hidratación</span>
+            <span class="dots"></span>
+            <span class="price">desde 15 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Hidratación profunda + secado</span>
+            <span class="dots"></span>
+            <span class="price">desde 35 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Tratamiento reparador</span>
+            <span class="dots"></span>
+            <span class="price">desde 25 €</span>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="service-category" id="keratina">
+        <div class="category-title">
+          <h3>Alisado con Keratina</h3>
+          <div class="category-line"></div>
+        </div>
+        <div class="services-grid">
+          <div class="service">
+            <span class="service-name">Cabello corto</span>
+            <span class="dots"></span>
+            <span class="price">desde 60 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Cabello medio</span>
+            <span class="dots"></span>
+            <span class="price">desde 80 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Cabello largo</span>
+            <span class="dots"></span>
+            <span class="price">desde 100 €</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Extra largo / mucha densidad</span>
+            <span class="dots"></span>
+            <span class="price">valoración previa</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-category" id="cejasydepilacion">
+        <div class="category-title">
+          <h3>Cejas y Depilación</h3>
+          <div class="category-line"></div>
+        </div>
+        <div class="services-grid">
+          <div class="service">
+            <span class="service-name">Depilación de cejas con cera</span>
+            <span class="dots"></span>
+            <span class="price">7 €</span>
+          </div>
+          
+      </div>
+
+      <div class="service-category" id="especiales">
+        <div class="category-title">
+          <h3>Trabajos Especiales</h3>
+          <div class="category-line"></div>
+        </div>
+        <div class="services-grid">
+          <div class="service">
+            <span class="service-name">Corrección de color</span>
+            <span class="dots"></span>
+            <span class="price">valoración previa</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Cambio de color</span>
+            <span class="dots"></span>
+            <span class="price">valoración previa</span>
+          </div>
+          <div class="service">
+            <span class="service-name">Decoloración global</span>
+            <span class="dots"></span>
+            <span class="price">valoración previa</span>
+          </div>
+        </div>
+      </div>
+
+
+
+    <div class="gold-divider"></div>
+
+    <!-- =========================
+         EQUIPO
+    ========================== -->
+    <section id="equipo">
+      <span class="section-label">
+        Nuestro equipo
+      </span>
+
+      <h2 class="section-title">
+        Personas detrás de
+        <em>Herederos.</em>
+      </h2>
+
+      <p class="section-text">
+        Profesionales de la casa y colaboradores seleccionados que comparten nuestra forma de entender el estilo, la técnica y el cuidado personal.
+      </p>
+
+      <div class="team-grid">
+
+        <article class="team-card team-card-photo">
+          <div class="team-photo-wrap">
+            <img
+              src=JuanPablo.jpeg
+              alt="Juan Pablo Tequia Salazar"
+              class="team-photo-real">
+          </div>
+
+          <div class="team-kicker">Equipo Herederos</div>
+
+          <h3>Juan Pablo Tequia Salazar</h3>
+
+          <div class="team-role">
+            Barbero Profesional
+          </div>
+
+          <p class="team-bio">
+            Formado y trabajando en barberías de Valencia y Medellín, dos ciudades con estilos diferentes de entender la barbería. De esa experiencia nace una técnica que combina precisión, tendencia y personalidad, adaptando cada servicio a los rasgos y al estilo de cada cliente.
+            <p class="team-bio">Especializado en degradados, cortes clásicos y estilos urbanos. Dominio de técnicas a máquina, tijera y navaja.
+              Diseño, perfilado y cuidado profesional de la barba.
+              Asesoramiento personalizado para encontrar el corte que mejor encaje con cada rostro y estilo de vida.</p>
+          </p>
+
+        </article>
+
+        <article class="team-card team-card-photo">
+          <div class="team-photo-wrap">
+            <img
+              src=shirley.jpeg
+              alt="Shirley"
+              class="team-photo-real">
+          </div>
+
+          <div class="team-kicker">Equipo Herederos</div>
+
+          <h3>Shirley</h3>
+
+          <div class="team-role">
+            Stylist & Color Specialist
+          </div>
+
+          <p class="team-bio">
+            Especialista en color, mechas, alisados y cuidado capilar. Su trabajo destaca por los tonos personalizados, el brillo y los acabados cuidados, buscando siempre realzar la belleza de cada cabello.
+          </p>
+
+        </article>
+
+        <article class="team-card team-card-photo collaborator-card" id="abrahamCard" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="abrahamPrices">
+          <div class="team-photo-wrap">
+            <img
+              src=abraham.jpeg
+              alt="Abraham López"
+              class="team-photo-real abraham-photo">
+          </div>
+
+          <div class="team-kicker">Colaborador por agenda</div>
+
+          <h3>Abraham López</h3>
+
+          <div class="team-role">
+            Stylist & Color Specialist
+          </div>
+
+          <p class="team-bio">
+            Formado y trabajando en algunos de los mejores salones entre Valencia y Londres, dos escuelas distintas de entender la peluquería.
+De ahí salen las técnicas, las tendencias y una manera propia de mirar el cabello.
+          </p>
+
+          <p class="team-bio collaborator-extra">
+            Finalista internacional de los Beauty Awards 2021 y autor de la colección artística
+            <em>Gaia</em>.Especializado en rubios, mechas, balayage y técnicas de iluminación. Cortes atrevidos y transformaciones con personalidad. Atiende en Herederos exclusivamente mediante cita previa.
+          </p>
+
+          <button type="button" class="gold-button team-booking" id="openAbrahamPrices">
+            Ver servicios y precios
+          </button>
+        </article>
+
+      </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <!-- =========================
+         GALERÍA
+    ========================== -->
+    <section id="galeria">
+      <span class="section-label">
+        Galería
+      </span>
+      <h2 class="section-title">
+        El universo
+        <em>Herederos.</em>
+      </h2>
+      <p class="section-text">
+        Aquí mostraremos nuestros trabajos, el espacio y los
+        resultados de nuestros profesionales.
+      </p>
+      <div class="gallery-preview">
+        <div class="gallery-box">
+          <img
+            src="pelo3.jpeg"
+            alt="Barbería">
+        </div>
+        <div class="gallery-box">
+          <img
+            src="pelo2.jpeg"
+            alt="Trabajo de barbería">
+            
+        </div>
+           <div class="gallery-box">
+          <img
+            src="pelo4.jpeg"
+            alt="Trabajo de barbería">
+        </div>
+        
+         <div class="gallery-box">
+          <img
+            src="pelo5.jpeg"
+            alt="Trabajo de barbería">
+        </div>
+        <div class="gallery-box">
+          <img
+            src="pelo1.jpeg"
+            alt="Belleza">
+        </div>
+
+         <div class="gallery-box">
+          <img
+            src="pelo6.jpeg"
+            alt="Belleza">
+        </div>
+
+         <div class="gallery-box">
+          <img
+            src="pelo7.jpeg"
+            alt="Belleza">
+        </div>
+
+         <div class="gallery-box">
+          <img
+            src="pelo8.jpeg"
+            alt="Belleza">
+        </div>
+
+         <div class="gallery-box">
+          <img
+            src="pelo9.jpeg"
+            alt="Belleza">
+        </div>
+
+        <div class="gallery-box">
+          <img
+            src="barberia.jpeg"
+            alt="Belleza">
+        </div>
+
+        <div class="gallery-box">
+          <img
+            src="pelo10.jpeg"
+            alt="Belleza">
+        </div>
+
+        <div class="gallery-box">
+          <img
+            src="pelo12.jpeg"
+            alt="Belleza">
+        </div>
+
+
+        <div class="gallery-box">
+          <img
+            src="pelo11.jpeg"
+            alt="Belleza">
+        </div>
+
+        <div class="gallery-box">
+          <img
+            src="pelo13.jpeg"
+            alt="Belleza">
+        </div>
+
+        <div class="gallery-box">
+          <img
+            src="barba1.jpeg"
+            alt="Belleza">
+        </div>
+        <div class="gallery-box">
+          <img
+            src="barba2.jpeg"
+            alt="Belleza">
+        </div>
+
+        <div class="gallery-box">
+          <img
+            src="pelo14.jpeg"
+            alt="Belleza">
+        </div>
+        <div class="gallery-box">
+          <img
+            src="pelo15.jpeg"
+            alt="Belleza">
+        </div>
+
+      </div>
+    </section>
+
+<div class="gold-divider"></div>
+
+     <section id="galeria">
+      <span class="section-label">
+        Galería
+      </span>
+      <h2 class="section-title">
+        Instalaciones de
+        <em>Herederos.</em>
+      </h2>
+      <div class="gallery-box">
+          <img
+            src="instalacion1.jpeg"
+            alt="Belleza">
+        </div>
+        <div class="gallery-box">
+          <img
+            src="instalacion2.jpeg"
+            alt="Belleza">
+        </div>
+
+ </div>
+    </section>
+
+
+
+
+    <div class="gold-divider"></div>
+
+    <!-- =========================
+         CONTACTO
+    ========================== -->
+    <section id="contacto">
+      <div class="contact">
+        <div>
+          <span class="section-label">
+            Ubicación & citas
+          </span>
+          <h2 class="section-title">
+            Tu momento
+            <em>empieza aquí.</em>
+          </h2>
+          <div class="contact-details">
+            <div class="detail">
+              <span>Dirección</span>
+              <span>
+                Av. la Rambleta 29<br>
+                46470 Catarroja, Valencia
+              </span>
+            </div>
+            <div class="detail">
+              <span>Teléfono</span>
+              <span>
+                <a href="tel:+34624368625">
+                  624 368 625
+                </a>
+              </span>
+            </div>
+            <div class="detail">
+              <span>Horario</span>
+              <span>
+                Lunes – Viernes<br>
+                09:30 – 14:00 · 16:00 – 20:00<br>
+                Sábado · 09:30 – 14:00<br>
+                Domingo · Cerrado
+              </span>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a href="https://booksy.com/es-es/193384_herederos-peluqueria-y-barberia_peluqueria_57512_catarroja?do=invite&_branch_match_id=1627354520407952850&utm_medium=merchant_customer_invite&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT07J0UvKz88urtRLzs/VD0oNDnHxLfMOM0uyrytKTUstKsrMS49PKsovL04tsnXOKMrPTQUAeCYoqjwAAAA=" class="gold-button">Reservar cita</a>
+            <a href="https://booksy.com/es-es/193384_herederos-peluqueria-y-barberia_peluqueria_57512_catarroja?do=invite&_branch_match_id=1627354520407952850&utm_medium=merchant_customer_invite&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT07J0UvKz88urtRLzs/VD0oNDnHxLfMOM0uyrytKTUstKsrMS49PKsovL04tsnXOKMrPTQUAeCYoqjwAAAA=" target="_blank" rel="noopener noreferrer" class="outline-button">Reservar en Booksy</a>
+          </div>
+        </div>
+        <div class="contact-image">
+          <img
+            src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=85&w=1200&auto=format&fit=crop"
+            alt="Herederos Barbería & Belleza">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a
+    href="https://booksy.com/es-es/193384_herederos-peluqueria-y-barberia_peluqueria_57512_catarroja?do=invite&_branch_match_id=1627354520407952850&utm_medium=merchant_customer_invite&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT07J0UvKz88urtRLzs/VD0oNDnHxLfMOM0uyrytKTUstKsrMS49PKsovL04tsnXOKMrPTQUAeCYoqjwAAAA="
+    target="_blank"
+    rel="noopener noreferrer"
+    class="mobile-sticky"
+    aria-label="Reservar cita">
+    Reservar cita
+  </a>
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <a href="#inicio" class="logo logo-image" aria-label="Herederos Barbería & Belleza">
+          <img src=Logo.jpeg alt="Herederos Barbería & Belleza">
+        </a>
+        <p class="footer-description">
+          Barbería, belleza y estilo en Catarroja.
+          Una nueva generación de cuidado personal.
+        </p>
+      </div>
+      <div class="footer-contact">
+        <p>
+          Av. la Rambleta 29
+        </p>
+        <p>
+          46470 Catarroja, Valencia
+        </p>
+        <p>
+          624 368 625
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>
+        © 2026 Herederos Barbería & Belleza
+      </span>
+      <span>
+        Todos los derechos reservados
+      </span>
+    </div>
+  </footer>
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+  <script>
+    (function () {
+      function initMenu() {
+        var openBtn = document.getElementById("openMenu");
+        var closeBtn = document.getElementById("closeMenu");
+        var menu = document.getElementById("menu");
+
+        if (!openBtn || !closeBtn || !menu) {
+          return;
+        }
+
+        function openNavigation(event) {
+          if (event) event.preventDefault();
+          menu.classList.add("active");
+          document.body.classList.add("menu-open");
+          menu.setAttribute("aria-hidden", "false");
+          openBtn.setAttribute("aria-expanded", "true");
+        }
+
+        function closeNavigation(event) {
+          if (event) event.preventDefault();
+          menu.classList.remove("active");
+          document.body.classList.remove("menu-open");
+          menu.setAttribute("aria-hidden", "true");
+          openBtn.setAttribute("aria-expanded", "false");
+        }
+
+        openBtn.setAttribute("type", "button");
+        closeBtn.setAttribute("type", "button");
+        openBtn.setAttribute("aria-controls", "menu");
+        openBtn.setAttribute("aria-expanded", "false");
+        menu.setAttribute("aria-hidden", "true");
+
+        openBtn.onclick = openNavigation;
+        closeBtn.onclick = closeNavigation;
+
+        var links = menu.querySelectorAll(".menu-links a");
+        for (var i = 0; i < links.length; i++) {
+          links[i].onclick = function () {
+            menu.classList.remove("active");
+            document.body.classList.remove("menu-open");
+            menu.setAttribute("aria-hidden", "true");
+            openBtn.setAttribute("aria-expanded", "false");
+          };
+        }
+
+        document.onkeydown = function (event) {
+          event = event || window.event;
+          if (event.key === "Escape" || event.keyCode === 27) {
+            closeNavigation();
+          }
+        };
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initMenu);
+      } else {
+        initMenu();
+      }
+    })();
+  </script>
+
+  <div class="price-modal" id="abrahamPrices" aria-hidden="true">
+    <div class="price-modal-backdrop" data-close-abraham></div>
+
+    <div class="price-modal-panel" role="dialog" aria-modal="true" aria-labelledby="abrahamPricesTitle">
+      <button class="price-modal-close" type="button" aria-label="Cerrar precios de Abraham" data-close-abraham>
+        ×
+      </button>
+
+      <div class="price-modal-kicker">Colaborador por agenda</div>
+      <h2 id="abrahamPricesTitle">Abraham López</h2>
+      <p class="price-modal-subtitle">Stylist & Color Specialist</p>
+
+      <div class="abraham-price-list">
+        <div class="abraham-price-row">
+          <div>
+            <strong>Color & Balayage</strong>
+            <span>Balayage, mechas, rubios y matices.</span>
+          </div>
+          <b>Desde 60 €</b>
+        </div>
+
+        <div class="abraham-price-row">
+          <div>
+            <strong>Balayage</strong>
+            <span>Iluminación a mano alzada y acabado natural.</span>
+          </div>
+          <b>Desde 80 €</b>
+        </div>
+
+        <div class="abraham-price-row">
+          <div>
+            <strong>Corte & Diseño</strong>
+            <span>Cortes adaptados a la textura y estilo personal.</span>
+          </div>
+          <b>Desde 10 €</b>
+        </div>
+
+        <div class="abraham-price-row">
+          <div>
+            <strong>Tratamientos</strong>
+            <span>Hidratación y reconstrucción capilar.</span>
+          </div>
+          <b>Desde 15 €</b>
+        </div>
+
+        <div class="abraham-price-row">
+          <div>
+            <strong>Peinados & Eventos</strong>
+            <span>Secados, recogidos y peinados especiales.</span>
+          </div>
+          <b>Desde 12 €</b>
+        </div>
+
+        <div class="abraham-price-row featured-price">
+          <div>
+            <strong>Experiencia completa Balayage</strong>
+            <span>Balayage + matiz + tratamiento + corte + secado.</span>
+          </div>
+          <b>140 €</b>
+        </div>
+      </div>
+
+      <p class="price-modal-note">
+        Abraham atiende en Herederos únicamente con cita previa. Los precios indicados son los publicados en su web y algunos servicios pueden variar según diagnóstico, longitud o trabajo necesario.
+      </p>
+
+      <a href="https://booksy.com/es-es/193384_herederos-peluqueria-y-barberia_peluqueria_57512_catarroja?do=invite&_branch_match_id=1627354520407952850&utm_medium=merchant_customer_invite&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT07J0UvKz88urtRLzs/VD0oNDnHxLfMOM0uyrytKTUstKsrMS49PKsovL04tsnXOKMrPTQUAeCYoqjwAAAA=" target="_blank" rel="noopener noreferrer" class="gold-button price-modal-book">
+        Reservar cita
+      </a>
+    </div>
+  </div>
+
+
+<script>
+(function () {
+  function initAbrahamPrices() {
+    var card = document.getElementById("abrahamCard");
+    var button = document.getElementById("openAbrahamPrices");
+    var modal = document.getElementById("abrahamPrices");
+    if (!card || !modal) return;
+
+    var closeEls = modal.querySelectorAll("[data-close-abraham]");
+    var closeBtn = modal.querySelector(".price-modal-close");
+
+    function openPrices(event) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      modal.classList.add("active");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("price-modal-open");
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closePrices(event) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      modal.classList.remove("active");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("price-modal-open");
+    }
+
+    card.addEventListener("click", openPrices);
+    card.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") {
+        openPrices(event);
+      }
+    });
+
+    if (button) {
+      button.addEventListener("click", openPrices);
+    }
+
+    for (var i = 0; i < closeEls.length; i++) {
+      closeEls[i].addEventListener("click", closePrices);
+    }
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && modal.classList.contains("active")) {
+        closePrices(event);
+      }
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAbrahamPrices);
+  } else {
+    initAbrahamPrices();
+  }
+})();
+</script>
+<script>
+(function(){
+  document.documentElement.classList.add('reveal-ready');
+  const els=document.querySelectorAll('.experience>div,.service,.team-card,.gallery-box,.contact>div');
+  const io=new IntersectionObserver(entries=>entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}
+  }),{threshold:.08});
+  els.forEach(e=>io.observe(e));
+})();
+</script>
+
+</body>
+</html>
